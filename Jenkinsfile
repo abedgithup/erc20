@@ -21,9 +21,11 @@ pipeline {
         }
 
         stage('Deploy') {
-            steps {
-                sh 'scp target/*.jar user@your-server:/deploy/path'
-            }
-        }
+    steps {
+        sh 'docker build -t my-app .'
+        sh 'docker run -d -p 8080:8080 my-app'
+    }
+}
+
     }
 }
